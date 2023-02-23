@@ -23,7 +23,7 @@
   line-height: 26px;
   line-height: 26px;
   text-transform: uppercase;
-  background: linear-gradient(to right, #6a3093, #a044ff);
+  background: linear-gradient(to right, #24243e, #302b63, #0f0c29);
   box-shadow: 0 8px 6px -6px gray;
   --webkit-box-shadow: 0 8px 6px -6px gray;
   border-bottom: solid gray !important;
@@ -31,7 +31,6 @@
 
 .nav-link:hover {
   font-weight: 600;
-  border-bottom: 1px solid #fff;
 }
 
 .navbar-toggler {
@@ -133,4 +132,36 @@
   .active {
     border-bottom: none;
   }
+}
+
+.footer-brand {
+  letter-spacing: 3px;
+}
+
+
+/* Page not found css  */
+
+.pnf {
+  display: flex;
+  min-height: 65vh;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.pnf-title {
+  font-size: 100px;
+  font-weight: 700;
+}
+
+.pnf-heading {
+  font-weight: normal;
+}
+
+.pnf-btn {
+  color: black;
+  border: 1px solid black;
+  text-decoration: none;
+  padding: 10px;
+  margin-top: 10px;
 }
