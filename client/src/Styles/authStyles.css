@@ -1,10 +1,31 @@
+/* ===================================
+========= register page  */
 .form-container {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 80vh;
+    min-height: 70vh;
     flex-direction: column;
-}
+  }
+  
+  .form-container form {
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    padding: 20px;
+    background-color: #fff;
+  }
+  
+  .form-container form .title {
+    text-align: center;
+    margin-bottom: 15px;
+    font-weight: bold;
+    font-family: "Playfair Display", serif;
+  }
+  
+  .form-container form input {
+    border: none;
+    border-bottom: 1px solid #000;
+    border-radius: 0;
+  }
 
 
 .btn-hover {
@@ -19,8 +40,8 @@
     text-align:center;
     border: none;
     background-size: 300% 100%;
-
-    border-radius: 50px;
+    width: 250px;
+    border-radius: 10px;
     -o-transition: all .4s ease-in-out;
     -webkit-transition: all .4s ease-in-out;
     transition: all .4s ease-in-out;
