@@ -4,10 +4,12 @@ import "../../Styles/authStyles.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
+import { useAuth } from "../../context/auth"
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [auth, setAuth] = useAuth();
 
   const navigate = useNavigate();
 
@@ -23,7 +25,14 @@ const Login = () => {
         toast.success(res && res.data.message, {
           duration: 4000,
         });
-        navigate("/homepage");
+        setAuth({
+          ...auth,
+          user: res.data.user,
+          token: res.data.token
+        });
+        // using localStorage to store the data
+        localStorage.setItem('auth', JSON.stringify(res.data));
+        navigate("/");
       } else {
         toast.error(res.data.message, {
             duration: 3000,

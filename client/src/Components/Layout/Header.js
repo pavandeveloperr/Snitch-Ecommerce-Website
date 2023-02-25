@@ -1,17 +1,31 @@
 import React from "react";
 import { Link, NavLink } from "react-router-dom";
-import "../../../src/index.css";
-import {TiShoppingCart} from 'react-icons/ti'
+import { TiShoppingCart } from "react-icons/ti";
+import { useAuth } from "../../context/auth";
+import  toast  from "react-hot-toast";
 
 const Header = () => {
+  const [auth, setAuth] = useAuth();
+
+  const handleLogout = () => {
+    setAuth({
+      ...auth, 
+      user: null,
+      token: "",
+    });
+    localStorage.removeItem("auth");
+    toast.success("Logout Successfully", {
+      duration: 3000
+    })
+  }
   return (
     <>
       <nav className="navbar navbar-expand-lg bg-body-tertiary">
         <div className="container-fluid">
-          <Link to='/' className="navbar-brand text-white">
-            <TiShoppingCart style={{marginTop: '-3px'}}/> SNITCH
+          <Link to="/" className="navbar-brand text-white">
+            <TiShoppingCart style={{ marginTop: "-3px" }} /> SNITCH
           </Link>
-        
+
           <button
             className="navbar-toggler collapsed d-flex d-lg-none flex-column justify-content-around"
             type="button"
@@ -28,10 +42,7 @@ const Header = () => {
           <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
             <ul className="navbar-nav ms-auto text-center mb-2 mb-lg-0">
               <li className="nav-item">
-                <NavLink
-                  to="/"
-                  className="nav-link text-white"
-                >
+                <NavLink to="/" className="nav-link text-white">
                   Home
                 </NavLink>
               </li>
@@ -40,16 +51,28 @@ const Header = () => {
                   Category
                 </NavLink>
               </li>
-              <li className="nav-item">
-                <NavLink to="/register" className="nav-link text-white">
-                  Register
-                </NavLink>
-              </li>
-              <li className="nav-item">
-                <NavLink to="/login" className="nav-link text-white">
-                  Login
-                </NavLink>
-              </li>
+              {!auth.user ? (
+                <>
+                  <li className="nav-item">
+                    <NavLink to="/register" className="nav-link text-white">
+                      Register
+                    </NavLink>
+                  </li>
+                  <li className="nav-item">
+                    <NavLink to="/login" className="nav-link text-white">
+                      Login
+                    </NavLink>
+                  </li>
+                </>
+              ) : (
+                <>
+                  <li className="nav-item">
+                    <NavLink onClick={handleLogout} to="/login" className="nav-link text-white">
+                      Logout
+                    </NavLink>
+                  </li>
+                </>
+              )}
               <li className="nav-item">
                 <NavLink to="/cart" className="nav-link text-white">
                   Cart (0)
