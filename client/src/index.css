@@ -124,10 +124,6 @@
   }
 }
 
-.active {
-  border-bottom: 2px solid white;
-} 
-
 @media only screen and (max-width: 1000px) {
   .active {
     border-bottom: none;
@@ -169,5 +165,15 @@
 
 .nav-item {
   font-size: medium;
+  color: white;
 }
 
+#username {
+  color: white;
+}
+
+@media only screen and (max-width: 1000px) {
+  .dropdown-menu {
+    color: white;
+  }
+}
