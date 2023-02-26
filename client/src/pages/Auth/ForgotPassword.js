@@ -38,7 +38,7 @@ const ForgotPassword = () => {
   };
 
   return (
-    <Layout>
+    <Layout title='Reset Password - Snitch'>
       <div className="form-container">
         <form className="mt-4" onSubmit={handleSubmit}>
           <h1 className="text-center">Reset Password</h1>
