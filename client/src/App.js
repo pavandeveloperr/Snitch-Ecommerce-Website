@@ -14,6 +14,8 @@ import Homepage from "./pages/Homepage";
 import PageNotFound from "./pages/PageNotFound";
 import Policy from "./pages/Policy";
 import Dashboard from "./pages/user/Dashboard";
+import Orders from "./pages/user/Orders";
+import Profile from "./pages/user/Profile";
 
 function App() {
   return (
@@ -22,6 +24,8 @@ function App() {
         <Route path="/" element={<Homepage />} />
         <Route path="/dashboard" element={<PrivateRoute />}>
           <Route path="user" element={<Dashboard />} />
+          <Route path="user/orders" element={<Orders />} />
+          <Route path="user/profile" element={<Profile />} />
         </Route>
         <Route path="/dashboard" element={<AdminRoute />}>
           <Route path="admin" element={<AdminDashboard />} />
