@@ -177,3 +177,8 @@
     color: white;
   }
 }
+
+.product-link {
+  text-decoration: none !important;
+  color: black;
+}
