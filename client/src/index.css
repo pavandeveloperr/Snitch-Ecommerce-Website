@@ -187,3 +187,9 @@
 #category-dd {
   color: white;
 }
+
+/* cart nav color */
+#cart {
+  color: white;
+  font-size: medium;
+}
