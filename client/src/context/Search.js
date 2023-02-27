@@ -4,13 +4,13 @@ const SearchContext = createContext();
 
 const SearchProvider = ({ children }) => {
   // GLOBAL STATES
-  const [auth, setAuth] = useState({
+  const [search, setSearch] = useState({
     keyword: "",
     results: [],
   });
 
   return (
-    <SearchContext.Provider value={[auth, setAuth]}>
+    <SearchContext.Provider value={[search, setSearch]}>
       {children}
     </SearchContext.Provider>
   );
