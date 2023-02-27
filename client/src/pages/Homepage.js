@@ -3,9 +3,13 @@ import React, { useEffect, useState } from "react";
 import Layout from "../Components/Layout/Layout";
 import { Checkbox, Radio } from "antd";
 import { Prices } from "../Components/Prices";
-import Spinner from "../Components/Loader/Spinner";
+import { useNavigate } from "react-router-dom";
+import { useCart } from "../context/cart";
+import  toast  from "react-hot-toast";
 
 const Homepage = () => {
+  const navigate = useNavigate();
+  const [cart, setCart] = useCart();
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
   const [checked, setChecked] = useState([]);
@@ -147,9 +151,19 @@ const Homepage = () => {
                   <h5 className="card-title">{p.name}</h5>
                   <p className="card-text">{p.description.substring(0, 30)}</p>
                   <p className="card-text">$ {p.price}</p>
-                  <button className="btn btn-primary ms-1">More details</button>
-                  <button className="btn btn-secondary ms-1">
-                    Add to Cart
+                  <button className="btn btn-primary ms-1" onClick={() => navigate(`/product/${p.slug}`)}>MORE DETAILS</button>
+                  <button
+                    className="btn btn-secondary ms-1"
+                    onClick={() => {
+                      setCart([...cart, p]);
+                      localStorage.setItem(
+                        "cart",
+                        JSON.stringify([...cart, p])
+                      );
+                      toast.success("Item Added to cart");
+                    }}
+                  >
+                    ADD TO CART
                   </button>
                 </div>
               </div>
@@ -164,7 +178,7 @@ const Homepage = () => {
                 setPage(page + 1);
               }}
             >
-              {loading ? <Spinner /> : "Loadmore"}
+              {loading ? "Loading..." : "Loadmore"}
             </button>
           )}
         </div>

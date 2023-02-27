@@ -3,9 +3,15 @@ import { Link, NavLink } from "react-router-dom";
 import { TiShoppingCart } from "react-icons/ti";
 import { useAuth } from "../../context/auth";
 import toast from "react-hot-toast";
+import SearchInput from "../Form/SearchInput";
+import useCategory from "../../Hooks/useCategory";
+import { useCart } from "../../context/cart";
+import { Badge } from "antd";
 
 const Header = () => {
   const [auth, setAuth] = useAuth();
+  const [cart] = useCart();
+  const categories = useCategory();
 
   const handleLogout = () => {
     setAuth({
@@ -26,6 +32,8 @@ const Header = () => {
             <TiShoppingCart style={{ marginTop: "-3px" }} /> SNITCH
           </Link>
 
+          <SearchInput />
+
           <button
             className="navbar-toggler collapsed d-flex d-lg-none flex-column justify-content-around"
             type="button"
@@ -41,15 +49,39 @@ const Header = () => {
           </button>
           <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
             <ul className="navbar-nav ms-auto text-center mb-2 mb-lg-0">
+
               <li className="nav-item">
                 <NavLink to="/" className="nav-link text-white">
                   Home
                 </NavLink>
               </li>
-              <li className="nav-item">
-                <NavLink to="/category" className="nav-link text-white">
-                  Category
-                </NavLink>
+            {/* Categories dropdown */}
+            <li className="nav-item dropdown">
+                <Link
+                  className="nav-link dropdown-toggle"
+                  id="category-dd"
+                  to={"/categories"}
+                  data-bs-toggle="dropdown"
+                >
+                  Categories
+                </Link>
+                <ul className="dropdown-menu">
+                  <li>
+                    <Link className="dropdown-item" to={"/categories"}>
+                      All Categories
+                    </Link>
+                  </li>
+                  {categories?.map((c) => (
+                    <li key={c._id}>
+                      <Link
+                        className="dropdown-item"
+                        to={`/category/${c.slug}`}
+                      >
+                        {c.name}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
               </li>
               {!auth?.user ? (
                 <>
@@ -70,9 +102,7 @@ const Header = () => {
                     <NavLink
                       id="username"
                       className="nav-item nav-link dropdown-toggle"
-                      role="button"
                       data-bs-toggle="dropdown"
-                      aria-expanded="false"
                     >
                       {auth?.user?.name}
                     </NavLink>
@@ -95,10 +125,14 @@ const Header = () => {
                   </li>
                 </>
               )}
-              <li className="nav-item">
-                <NavLink to="/cart" className="nav-link text-white">
-                  Cart (0)
-                </NavLink>
+              <li className="nav-item" >
+               <Badge count={cart?.length} showZero className="nav-item mt-1">
+               <NavLink to="/cart" className='nav-link' id="cart">
+                cart
+               </NavLink>
+               
+               </Badge>
+
               </li>
             </ul>
           </div>

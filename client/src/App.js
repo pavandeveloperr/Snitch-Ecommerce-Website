@@ -11,10 +11,15 @@ import Users from "./pages/Admin/Users";
 import ForgotPassword from "./pages/Auth/ForgotPassword";
 import Login from "./pages/Auth/Login";
 import Register from "./pages/Auth/Register";
+import CartPage from "./pages/CartPage";
+import Categories from "./pages/Categories";
+import CategoryProduct from "./pages/CategoryProduct";
 import Contact from "./pages/Contact/Contact";
 import Homepage from "./pages/Homepage";
 import PageNotFound from "./pages/PageNotFound";
 import Policy from "./pages/Policy";
+import ProductDetails from "./pages/ProductDetails";
+import Search from "./pages/Search";
 import Dashboard from "./pages/user/Dashboard";
 import Orders from "./pages/user/Orders";
 import Profile from "./pages/user/Profile";
@@ -24,6 +29,11 @@ function App() {
     <>
       <Routes>
         <Route path="/" element={<Homepage />} />
+        <Route path="/product/:slug" element={<ProductDetails />} />
+        <Route path="/categories" element={<Categories />} />
+        <Route path="/cart" element={<CartPage />} />
+        <Route path="/category/:slug" element={<CategoryProduct />} />
+        <Route path="/search" element={<Search />} />
         <Route path="/dashboard" element={<PrivateRoute />}>
           <Route path="user" element={<Dashboard />} />
           <Route path="user/orders" element={<Orders />} />
