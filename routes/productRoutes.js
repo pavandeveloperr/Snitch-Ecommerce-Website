@@ -5,6 +5,7 @@ import {
   getProductController,
   getProductImageController,
   getSingleProductController,
+  productCategoryController,
   productCountController,
   productFiltersController,
   productListController,
@@ -63,5 +64,8 @@ router.get('/search/:keyword', searchProductController)
 
 // SIMILAR PRODUCT || GET
 router.get('/related-product/:pid/:cid', relatedProductController)
+
+// CATEGORY WISE PRODUCT || GET
+router.get('/product-category/:slug', productCategoryController)
 
 export default router;
