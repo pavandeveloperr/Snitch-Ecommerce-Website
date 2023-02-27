@@ -182,3 +182,8 @@
   text-decoration: none !important;
   color: black;
 }
+
+/* category dropdown-menu */
+#category-dd {
+  color: white;
+}
