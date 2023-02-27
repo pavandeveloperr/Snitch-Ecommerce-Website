@@ -231,16 +231,43 @@ export const productListController = async (req, res) => {
       .skip((page - 1) * perPage)
       .limit(perPage)
       .sort({ createdAt: -1 });
-      res.status(200).send({
-        success: true,
-        products
-      })
+    res.status(200).send({
+      success: true,
+      products,
+    });
   } catch (error) {
     console.log(error);
     res.status(400).send({
       success: false,
       error,
       message: "Error in per page ctrl",
+    });
+  }
+};
+
+// search product controller
+export const searchProductController = async (req, res) => {
+  try {
+    const { keyword } = req.params;
+    const results = await productModel
+      .find({
+        $or: [
+          {
+            name: { $regex: keyword, $options: "i" },
+          },
+          { 
+            description: { $regex: keyword, $options: "i" }
+          },
+        ],
+      })
+      .select("-image");
+    res.json(results);
+  } catch (error) {
+    console.log(error);
+    res.status(400).send({
+      success: false,
+      message: "Error in Search Product",
+      error,
     });
   }
 };
