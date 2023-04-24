@@ -65,8 +65,8 @@ Clone the project
 
 Go to the project directory
 
-```bash
 Install dependencies in root folder
+```bash
   npm install
 ```
 
