@@ -1,4 +1,5 @@
 # Snitch-Ecommerce-Website
 
-# PROJECT STATUS
-## APP UNDER DEVELOPMENT
+## Deployed on cylic
+
+Click here - [DEMO](https://enchanting-top-coat-bear.cyclic.app)
