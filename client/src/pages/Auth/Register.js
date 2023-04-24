@@ -3,7 +3,8 @@ import Layout from "../../Components/Layout/Layout";
 import "../../Styles/authStyles.css";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
-import toast from 'react-hot-toast';
+import toast from "react-hot-toast";
+import "../../Styles/cartButton.css";
 
 const Register = () => {
   const [name, setName] = useState("");
@@ -15,18 +16,21 @@ const Register = () => {
 
   const navigate = useNavigate();
 
-
   // form-submit function
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post(
-        "/api/v1/auth/register",
-        { name, email, password, phone, address, answer}
-      );
-      if(res && res.data.success){
+      const res = await axios.post("/api/v1/auth/register", {
+        name,
+        email,
+        password,
+        phone,
+        address,
+        answer,
+      });
+      if (res && res.data.success) {
         toast.success(res && res.data.message, {
-            duration: 4000,
+          duration: 4000,
         });
         navigate("/login");
       } else {
@@ -34,15 +38,15 @@ const Register = () => {
       }
     } catch (error) {
       console.log(error);
-      toast.error("Something went wrong")
+      toast.error("Something went wrong");
     }
   };
 
   return (
     <Layout title="Register - Snitch">
       <div className="form-container mb-4">
-        <form className="mt-4" onSubmit={handleSubmit}>
-        <h1 className="text-center pb-2">REGISTER FORM</h1>
+        <form className="mt-4 rounded" onSubmit={handleSubmit}>
+          <h1 className="text-center pb-2">REGISTER FORM</h1>
           <div className="mb-3">
             <input
               type="text"
@@ -113,13 +117,15 @@ const Register = () => {
               placeholder="What is your favorite food?"
               required
             />
+            <p className="text-muted my-1 mx-1" id="security-question">
+              security question for reset password
+            </p>
           </div>
           <div className="d-flex relative mb-2">
-          Already registered? Log in
-          <Link to={"/login"} type="button" className="px-2">
-             here
-          </Link>
-          
+            Already registered? Log in
+            <Link to={"/login"} type="button" className="px-2">
+              here
+            </Link>
           </div>
           <button type="submit" className="btn-hover color-3">
             SIGN UP

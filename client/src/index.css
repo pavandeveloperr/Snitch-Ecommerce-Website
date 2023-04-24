@@ -15,6 +15,7 @@
   font-weight: 700;
   font-style: "roboto", sans-serif;
   letter-spacing: 3px;
+  color: black;
 }
 
 .navbar {
@@ -23,10 +24,7 @@
   line-height: 26px;
   line-height: 26px;
   text-transform: uppercase;
-  background: linear-gradient(to right, #24243e, #302b63, #0f0c29);
-  box-shadow: 0 8px 6px -6px gray;
   --webkit-box-shadow: 0 8px 6px -6px gray;
-  border-bottom: solid gray !important;
 }
 
 .nav-link:hover {
@@ -106,16 +104,16 @@
 
 /* color of 3 lines  */
 .navbar-toggler.collapsed .toggler-icon {
-  background: white;
+  background: black;
 }
 
 .navbar-toggler .top-bar {
-  background: white;
+  background: black;
 }
 
 
 .navbar-toggler .bottom-bar {
-  background: white;
+  background: black;
 }
 
 @media only screen and (max-width: 1000px) {
@@ -165,16 +163,16 @@
 
 .nav-item {
   font-size: medium;
-  color: white;
+  color: black;
 }
 
 #username {
-  color: white;
+  color: black;
 }
 
 @media only screen and (max-width: 1000px) {
   .dropdown-menu {
-    color: white;
+    color: black;
   }
 }
 
@@ -185,11 +183,11 @@
 
 /* category dropdown-menu */
 #category-dd {
-  color: white;
+  color: black;
 }
 
 /* cart nav color */
 #cart {
-  color: white;
+  color: black;
   font-size: medium;
 }

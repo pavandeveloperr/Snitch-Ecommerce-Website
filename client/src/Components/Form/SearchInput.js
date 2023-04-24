@@ -2,6 +2,7 @@ import axios from "axios";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useSearch } from "../../context/Search";
+import { FaSearch } from "react-icons/fa";
 
 const SearchInput = () => {
   const [values, setValues] = useSearch();
@@ -19,7 +20,6 @@ const SearchInput = () => {
       console.log(error);
     }
   };
-
   return (
     <div>
       <form className="d-flex" role="search" onSubmit={handleSubmit}>
@@ -31,7 +31,7 @@ const SearchInput = () => {
           value={values.keyword}
           onChange={(e) => setValues({ ...values, keyword: e.target.value })}
         />
-        <button className="btn btn-outline-success" type="submit">
+        <button className="btn btn-outline-dark" type="submit">
           Search
         </button>
       </form>

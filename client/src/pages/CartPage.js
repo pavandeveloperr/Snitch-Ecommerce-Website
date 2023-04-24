@@ -6,6 +6,7 @@ import Layout from "../Components/Layout/Layout";
 import toast from "react-hot-toast";
 import DropIn from "braintree-web-drop-in-react";
 import axios from "axios";
+import { BsFillTrashFill } from "react-icons/bs";
 
 const CartPage = () => {
   const [auth, setAuth] = useAuth();
@@ -60,31 +61,37 @@ const CartPage = () => {
   }, [auth?.token]);
 
   //handle payments
-  const handlePayment = async() => {
+  const handlePayment = async () => {
     try {
       setLoading(true);
-      const {nonce} = await instance.requestPaymentMethod();
-      const {data } = await axios.post("api/v1/product/braintree/payment", {
+      const { nonce } = await instance.requestPaymentMethod();
+      const { data } = await axios.post("api/v1/product/braintree/payment", {
         nonce,
         cart,
       });
       setLoading(false);
-      localStorage.removeItem('cart');
+      localStorage.removeItem("cart");
       setCart([]);
       navigate("/dashboard/user/orders");
       toast.success("payment Complete Successfully");
     } catch (error) {
-      console.log(error)
+      console.log(error);
       setLoading(false);
     }
   };
 
+  // remove all cart items
+  function clearCart() {
+    localStorage.setItem("cart", JSON.stringify([]));
+    window.location.reload();
+  }
+
   return (
-    <Layout>
+    <Layout title={"Snitch - Cart Page"}>
       <div className="container">
         <div className="row">
           <div className="col-md-12">
-            <h1 className="text-center bg-light p-2 mb-1">
+            <h1 className="text-center  p-2 mb-1">
               {`Hello ${auth?.token && auth?.user?.name}`}
             </h1>
             <h4 className="text-center">
@@ -96,6 +103,14 @@ const CartPage = () => {
             </h4>
           </div>
         </div>
+        <div className="col-md-4 mb-4 d-flex justify-content-end">
+          {cart.length ? (
+            <button className="btn btn-warning" onClick={() => clearCart()}>
+              Remove All
+            </button>
+          ) : null}
+        </div>
+
         <div className="row">
           <div className="col-md-8">
             {cart?.map((p) => (
@@ -110,15 +125,17 @@ const CartPage = () => {
                   />
                 </div>
                 <div className="col-md-8">
+                  <div className="d-flex justify-content-end align-items-start">
+                    <BsFillTrashFill
+                      className="text-danger cursor-pointer"
+                      onClick={() => removeCartItem(p._id)}
+                    >
+                      Remove
+                    </BsFillTrashFill>
+                  </div>
                   <p>{p.name}</p>
                   <p>{p.description.substring(0, 30)}</p>
                   <p>Price : {p.price}</p>
-                  <button
-                    className="btn btn-danger"
-                    onClick={() => removeCartItem(p._id)}
-                  >
-                    Remove
-                  </button>
                 </div>
               </div>
             ))}
@@ -134,7 +151,7 @@ const CartPage = () => {
                   <h4>Current Address</h4>
                   <h5>{auth?.user?.address}</h5>
                   <button
-                    className="btn btn-outline-warning"
+                    className="btn btn-success"
                     onClick={() => navigate("/dashboard/user/profile")}
                   >
                     Update Address
@@ -152,7 +169,7 @@ const CartPage = () => {
                   </button>
                 ) : (
                   <button
-                    className="btn btn-outline-warning"
+                    className="btn btn-outline-dark"
                     onClick={() =>
                       navigate("/login", {
                         state: "/cart", //it will redirect to cart page once user logs in
@@ -165,7 +182,7 @@ const CartPage = () => {
               </div>
             )}
             <div className="mt-2">
-            {!clientToken || !cart?.length ? (
+              {!clientToken || !cart?.length ? (
                 ""
               ) : (
                 <>

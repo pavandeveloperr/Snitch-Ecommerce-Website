@@ -19,13 +19,13 @@ const ForgotPassword = () => {
       const res = await axios.post("/api/v1/auth/forgot-password", {
         email,
         newPassword,
-        answer
+        answer,
       });
       if (res && res.data.success) {
         toast.success(res && res.data.message, {
           duration: 4000,
         });
-        navigate("/login");        
+        navigate("/login");
       } else {
         toast.error(res.data.message, {
           duration: 3000,
@@ -38,9 +38,9 @@ const ForgotPassword = () => {
   };
 
   return (
-    <Layout title='Reset Password - Snitch'>
+    <Layout title="Reset Password - Snitch">
       <div className="form-container">
-        <form className="mt-4" onSubmit={handleSubmit}>
+        <form className="mt-4 rounded" onSubmit={handleSubmit}>
           <h1 className="text-center">Reset Password</h1>
           <div className="mb-3">
             <input
@@ -77,7 +77,7 @@ const ForgotPassword = () => {
               required
             />
           </div>
-          
+
           <button type="submit" className="btn-hover color-3">
             RESET
           </button>

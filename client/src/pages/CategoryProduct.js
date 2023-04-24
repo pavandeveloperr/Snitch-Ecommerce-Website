@@ -2,10 +2,13 @@ import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Layout from "../Components/Layout/Layout";
+import { useCart } from "../context/cart";
+import toast from "react-hot-toast";
 
 const CategoryProduct = () => {
   const params = useParams();
   const navigate = useNavigate();
+  const [cart, setCart] = useCart();
   const [products, setProducts] = useState([]);
   const [category, setCategory] = useState([]);
 
@@ -29,53 +32,47 @@ const CategoryProduct = () => {
       <div className="container mt-3">
         <h4 className="text-center">Category - {category?.name}</h4>
         <h6 className="text-center">{products?.length} result found </h6>
-        <div className="row">
-          <div className="col-md-9 offset-1">
-            <div className="d-flex flex-wrap">
-              {products?.map((p) => (
-                <div
-                  className="card m-2"
-                  style={{ width: "18rem" }}
-                  key={p._id}
-                >
-                  <img
-                    src={`/api/v1/product/product-image/${p._id}`}
-                    className="card-img-top"
-                    alt={p.name}
-                  />
-                  <div className="card-body">
-                    <h5 className="card-title">{p.name}</h5>
-                    <p className="card-text">
-                      {p.description.substring(0, 30)}...
-                    </p>
-                    <p className="card-text"> $ {p.price}</p>
+        <div className="row row-cols-1 row-cols-sm-2 row-cols-md-2 row-cols-lg-3 g-2">
+          {products?.map((p) => (
+            <div key={p._id} className="col">
+              <div className="card h-100 border-3 shadow-lg bg-gradient">
+                <img
+                  src={`/api/v1/product/product-image/${p._id}`}
+                  className="card-img-top h-75"
+                  alt={p.name}
+                />
+                <hr />
+
+                <div className="card-body">
+                  <h5 className="card-title">{p.name}</h5>
+                  <p className="card-text">{p.description.substring(0, 30)}</p>
+                  <p className="card-text">$ {p.price}</p>
+                  <div className="d-grid gap-md-1 d-md-flex justify-content-md-between">
                     <button
-                      className="btn btn-primary ms-1"
+                      className="btn btn-outline-dark mb-1"
                       onClick={() => navigate(`/product/${p.slug}`)}
                     >
-                      More Details
+                      MORE DETAILS
                     </button>
-                    <button className="btn btn-secondary ms-1">
+
+                    <button
+                      className="btn text-white btn-purple"
+                      onClick={() => {
+                        setCart([...cart, p]);
+                        localStorage.setItem(
+                          "cart",
+                          JSON.stringify([...cart, p])
+                        );
+                        toast.success("Product Added to Cart");
+                      }}
+                    >
                       ADD TO CART
                     </button>
                   </div>
                 </div>
-              ))}
+              </div>
             </div>
-            {/* <div className="m-2 p-3">
-            {products && products.length < total && (
-              <button
-                className="btn btn-warning"
-                onClick={(e) => {
-                  e.preventDefault();
-                  setPage(page + 1);
-                }}
-              >
-                {loading ? "Loading ..." : "Loadmore"}
-              </button>
-            )}
-          </div> */}
-          </div>
+          ))}
         </div>
       </div>
     </Layout>

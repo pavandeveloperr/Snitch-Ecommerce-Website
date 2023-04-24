@@ -54,7 +54,7 @@ export const registerController = async (req, res) => {
     }).save();
     res.status(201).send({
       success: true,
-      message: "User Register Succesfully",
+      message: "User Register Successful",
       user,
     });
   } catch (error) {
@@ -90,7 +90,7 @@ export const loginController = async (req, res) => {
     if (!match) {
       return res.status(200).send({
         success: false,
-        message: "Invalid Password",
+        message: "Invalid Email or Password",
       });
     }
     // token
@@ -99,7 +99,7 @@ export const loginController = async (req, res) => {
     });
     res.status(200).send({
       success: true,
-      message: "login successfully",
+      message: "login successful",
       user: {
         _id: user._id,
         name: user.name,
@@ -236,7 +236,7 @@ export const getAllOrdersController = async (req, res) => {
       .find({})
       .populate("products", "-image")
       .populate("buyer", "name")
-      .sort({createdAt: "-1"}) 
+      .sort({ createdAt: "-1" });
     res.json(orders);
   } catch (error) {
     console.log(error);
@@ -247,7 +247,6 @@ export const getAllOrdersController = async (req, res) => {
     });
   }
 };
-
 
 //order status
 export const orderStatusController = async (req, res) => {

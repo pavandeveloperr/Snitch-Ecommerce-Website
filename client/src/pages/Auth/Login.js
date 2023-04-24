@@ -48,7 +48,7 @@ const Login = () => {
   return (
     <Layout title="Login - Snitch">
       <div className="form-container">
-        <form className="mt-4" onSubmit={handleSubmit}>
+        <form className="mt-4 rounded" onSubmit={handleSubmit}>
           <h1 className="text-center">LOGIN</h1>
           <div className="mb-3">
             <input
