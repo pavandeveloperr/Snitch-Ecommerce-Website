@@ -1,5 +1,5 @@
 
-# SNITCH - SHOP ANYTHING
+## SNITCH - SHOP ANYTHING
 [![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://github.com/pavandeveloperr/Snitch-Ecommerce-Website/blob/master/LICENSE.md)
 
 Snitch is a user-friendly ecommerce app that allows customers to easily browse and purchase products using its intuitive UI. Built on the MERN stack.With Snitch, customers can shop with confidence and convenience, all at their fingertips.
@@ -32,7 +32,7 @@ To run this project, you will need to add the following environment variables to
 - Update Profile
 - reset password
 - track orders
-
+- protected user dashboard route
 ## Admin Panel
 - Create, update, delete products
 - Check the orders
