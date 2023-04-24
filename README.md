@@ -86,7 +86,7 @@ Start the server
 
 ## Authors
 
-- [@pavandeveloperr](https://www.linkedin.com/in/pavankulkarnii)
+- [Pavan Kulkarni](https://www.linkedin.com/in/pavankulkarnii)
 
 
 ## FAQ
@@ -97,5 +97,5 @@ Yes, Bootstrap 5 is used to make the app Responsive
 
 #### Does it include Theme toggler ?
 
-No, Work in progress
+No, might include soon
 
