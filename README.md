@@ -2,8 +2,7 @@
 ## SNITCH - SHOP ANYTHING
 [![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://github.com/pavandeveloperr/Snitch-Ecommerce-Website/blob/master/LICENSE.md)
 
-Snitch is a user-friendly ecommerce app that allows customers to easily browse and purchase products using its intuitive UI. Built on the MERN stack.With Snitch, customers can shop with confidence and convenience, all at their fingertips.
-
+Snitch is an ecommerce app built using MERN stack, featuring both user and admin panels. With Snitch, users can easily browse and purchase products from different categories, while the admin can add, update and manage products. The app also features Braintree payment gateway integration and secure authentication using JWT and bcryptjs, ensuring a seamless and secure shopping experience for all users.
 
 ## Environment Variables
 
@@ -98,4 +97,7 @@ Yes, Bootstrap 5 is used to make the app Responsive
 #### Does it include Theme toggler ?
 
 No, might include soon
+
+### I am a begginer Can i contribute to this project?
+Yes, Whether your a beginner or professional you can contribute to this project.
 
